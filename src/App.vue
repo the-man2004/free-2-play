@@ -1,8 +1,14 @@
 <template>
-  <h1>Hello World!</h1>
+  <the-header></the-header>
+  <router-view></router-view>
 </template>
 
-<script setup></script>
+<script setup>
+import { useGamesStore } from "./stores/useGamesStore";
+import TheHeader from "./components/TheHeader.vue";
+
+const gamesStore = useGamesStore();
+</script>
 
 <style>
 #app {
