@@ -11,8 +11,13 @@
 </template>
 
 <script setup>
+import { onMounted } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
 import GamesList from "../components/GamesList.vue";
 
 const gamesStore = useGamesStore();
+
+onMounted(() => {
+  gamesStore.fetchListOfGames();
+});
 </script>

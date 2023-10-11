@@ -13,5 +13,5 @@ import GameItem from "./GameItem.vue";
 
 const gamesStore = useGamesStore();
 
-const games = computed(() => gamesStore.gameData);
+const games = computed(() => gamesStore.allGamesData);
 </script>

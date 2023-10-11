@@ -4,15 +4,7 @@
 </template>
 
 <script setup>
-import { useGamesStore } from "./stores/useGamesStore";
 import TheHeader from "./components/TheHeader.vue";
-import { onMounted } from "vue";
-
-const gamesStore = useGamesStore();
-
-onMounted(() => {
-  gamesStore.fetchListOfGames();
-});
 </script>
 
 <style>

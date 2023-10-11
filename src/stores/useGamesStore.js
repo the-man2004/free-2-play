@@ -5,7 +5,16 @@ export const useGamesStore = defineStore("games", {
     return {
       platform: "all",
       results: 0,
-      gameData: null,
+      allGamesData: null,
+      specificGameData: null,
+      options: {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Key":
+            "95d5f6cc3dmsh6284e340fd8f262p11e311jsn80b11045f6e9",
+          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+        },
+      },
     };
   },
   getters: {
@@ -21,32 +30,44 @@ export const useGamesStore = defineStore("games", {
     numOfResults: (state) => state.results,
   },
   actions: {
+    // Fetches a list of games
     async fetchListOfGames(sort = "popularity", category = null) {
-      const options = {
-        method: "GET",
-        headers: {
-          "X-RapidAPI-Key":
-            "95d5f6cc3dmsh6284e340fd8f262p11e311jsn80b11045f6e9",
-          "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
-        },
-      };
-
       const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${
         this.platform
       }&sort-by=${sort}${category !== null ? `&category=${category}` : ""}`;
 
       try {
-        const response = await fetch(url, options);
+        const response = await fetch(url, this.options);
 
         if (!response.ok) {
-          throw new Error("Something went wrong");
+          throw new Error("Something went wrong!");
         }
 
         const responseData = await response.json();
 
-        this.gameData = { ...responseData };
+        this.allGamesData = { ...responseData };
         this.results = responseData.length;
-        console.log(this.gameData);
+        console.log(responseData);
+      } catch (err) {
+        console.log(err);
+      }
+    },
+    // Fetches a specific game
+    async fetchGame(id) {
+      try {
+        const response = await fetch(
+          `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`,
+          this.options
+        );
+
+        if (!response.ok) {
+          throw new Error("Something went wrong!");
+        }
+
+        const responseData = await response.json();
+
+        this.specificGameData = responseData;
+        console.log(responseData);
       } catch (err) {
         console.log(err);
       }
