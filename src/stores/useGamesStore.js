@@ -3,17 +3,25 @@ import { defineStore } from "pinia";
 export const useGamesStore = defineStore("games", {
   state: () => {
     return {
-      name: "Free-2-Play",
+      platform: "all",
+      results: 0,
       gameData: null,
     };
   },
-  getters: {},
+  getters: {
+    selectedPlatform: (state) => {
+      if (state.platform === "pc") {
+        return ["Best free games for PC in 2023!", "PC games"];
+      } else if (state.platform === "browser") {
+        return ["Best free games for Browser in 2023!", "browser games"];
+      } else {
+        return ["Best free games for PC and Browser in 2023!", "games"];
+      }
+    },
+    numOfResults: (state) => state.results,
+  },
   actions: {
-    async fetchListOfGames(
-      platform = "pc",
-      sort = "popularity",
-      category = null
-    ) {
+    async fetchListOfGames(sort = "popularity", category = null) {
       const options = {
         method: "GET",
         headers: {
@@ -23,9 +31,9 @@ export const useGamesStore = defineStore("games", {
         },
       };
 
-      const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${platform}&sort-by=${sort}${
-        category !== null ? `&category=${category}` : ""
-      }`;
+      const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${
+        this.platform
+      }&sort-by=${sort}${category !== null ? `&category=${category}` : ""}`;
 
       try {
         const response = await fetch(url, options);
@@ -37,6 +45,7 @@ export const useGamesStore = defineStore("games", {
         const responseData = await response.json();
 
         this.gameData = { ...responseData };
+        this.results = responseData.length;
         console.log(this.gameData);
       } catch (err) {
         console.log(err);
