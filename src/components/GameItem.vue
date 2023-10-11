@@ -1,7 +1,7 @@
 <template>
   <li>
     <router-link :to="`/game/${id}`">
-      <img :src="img" alt="Game thumbnail" />
+      <img :src="img" alt="Game thumbnail" loading="lazy" />
       <div>
         <h2>{{ title }}</h2>
         <span>FREE</span>
@@ -46,8 +46,22 @@ const props = defineProps({
 const id = computed(() => props.game.id);
 
 const img = computed(() => props.game.thumbnail);
-const title = computed(() => props.game.title);
-const description = computed(() => props.game.short_description);
+const title = computed(() => {
+  const t = props.game.title;
+  if (t.length > 20) {
+    return t.slice(0, 20) + "...";
+  } else {
+    return t;
+  }
+});
+const description = computed(() => {
+  const desc = props.game.short_description;
+  if (desc.length > 30) {
+    return desc.slice(0, 30) + "...";
+  } else {
+    return desc;
+  }
+});
 const genre = computed(() => props.game.genre);
 const platform = computed(() =>
   props.game.platform === "PC (Windows)" ? "pc" : "browser"
