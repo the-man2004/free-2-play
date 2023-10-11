@@ -18,6 +18,7 @@ const routes = [
     path: "/game/:id",
     name: "Game",
     component: Game,
+    props: true,
   },
 ];
 
