@@ -2,7 +2,7 @@
   <div>
     <h1>{{ gamesStore.selectedPlatform[0] }}</h1>
     <p>
-      {{ gamesStore.numOfResults }} free-2-play
+      {{ gamesStore.numOfResults }} free to play
       <span>{{ gamesStore.selectedPlatform[1] }} found in our games list!</span>
     </p>
     <button>Filter</button>

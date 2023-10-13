@@ -1,13 +1,13 @@
 <template>
-  <div>
-    <h2>Game</h2>
-    <p>Game ID: {{ id }}</p>
+  <div v-if="!gamesStore.isLoading">
+    <game-data></game-data>
   </div>
 </template>
 
 <script setup>
 import { onMounted } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
+import GameData from "../components/GameData.vue";
 
 const gamesStore = useGamesStore();
 

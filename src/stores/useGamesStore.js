@@ -3,10 +3,11 @@ import { defineStore } from "pinia";
 export const useGamesStore = defineStore("games", {
   state: () => {
     return {
+      isLoading: true,
       platform: "all",
       results: 0,
-      allGamesData: null,
-      specificGameData: null,
+      allGamesData: undefined,
+      specificGameData: undefined,
       options: {
         method: "GET",
         headers: {
@@ -28,10 +29,14 @@ export const useGamesStore = defineStore("games", {
       }
     },
     numOfResults: (state) => state.results,
+    selectedGame: (state) => state.specificGameData,
   },
   actions: {
     // Fetches a list of games
     async fetchListOfGames(sort = "popularity", category = null) {
+      // Set loading to true
+      this.isLoading = true;
+
       const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${
         this.platform
       }&sort-by=${sort}${category !== null ? `&category=${category}` : ""}`;
@@ -51,9 +56,15 @@ export const useGamesStore = defineStore("games", {
       } catch (err) {
         console.log(err);
       }
+
+      // Set loading to false
+      this.isLoading = false;
     },
     // Fetches a specific game
     async fetchGame(id) {
+      // Set loading to true
+      this.isLoading = true;
+
       try {
         const response = await fetch(
           `https://free-to-play-games-database.p.rapidapi.com/api/game?id=${id}`,
@@ -71,6 +82,9 @@ export const useGamesStore = defineStore("games", {
       } catch (err) {
         console.log(err);
       }
+
+      // Set loading to false
+      this.isLoading = false;
     },
   },
 });
