@@ -18,6 +18,8 @@ import GamesList from "../components/GamesList.vue";
 const gamesStore = useGamesStore();
 
 onMounted(() => {
-  gamesStore.fetchListOfGames();
+  if (!gamesStore.allGamesData) {
+    gamesStore.fetchListOfGames();
+  }
 });
 </script>
