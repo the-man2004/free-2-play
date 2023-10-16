@@ -1,5 +1,9 @@
 <template>
-  <div v-if="!gamesStore.isLoading">
+  <div
+    v-if="
+      gamesStore.isLoading === false && gamesStore.selectedGame !== undefined
+    "
+  >
     <game-data></game-data>
   </div>
 </template>

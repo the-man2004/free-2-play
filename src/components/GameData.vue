@@ -1,7 +1,11 @@
 <template>
   <div>
     <figure>
-      <img :src="thumbnail" alt="Game thumbnail" />
+      <img
+        v-if="gamesStore.selectedGame.thumbnail !== undefined"
+        :src="thumbnail"
+        alt="Game thumbnail"
+      />
       <figcaption>{{ title }}</figcaption>
     </figure>
   </div>
