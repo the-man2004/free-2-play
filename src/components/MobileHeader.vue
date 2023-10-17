@@ -16,16 +16,7 @@
       v-if="isMenuOpen"
       class="absolute pt-8 pb-4 px-8 left-0 right-0 bg-gray-900 md:hidden"
     >
-      <div class="flex flex-col">
-        <form @submit.prevent="handleSearch">
-          <input
-            v-model="searchValue"
-            class="outline-none w-full bg-gray-900"
-            type="text"
-            placeholder="Search..."
-          />
-        </form>
-      </div>
+      <search-bar></search-bar>
       <div class="h-px my-2 bg-gray-800"></div>
       <ul>
         <li>
@@ -96,18 +87,11 @@
 <script setup>
 import { ref } from "vue";
 
+import SearchBar from "./SearchBar.vue";
+
 const isMenuOpen = ref(false);
 const isPCGamesOpen = ref(false);
 const isBrowserGamesOpen = ref(false);
-
-const searchValue = ref("");
-
-// Search function
-const handleSearch = () => {
-  console.log(searchValue.value);
-
-  searchValue.value = "";
-};
 
 // Dropdown functions
 const closeDropdowns = () => {
