@@ -3,12 +3,12 @@
   <nav class="md:hidden">
     <div class="flex flex-row">
       <div>
-        <router-link @click="closeMenu" to="/" class="font-semibold"
+        <router-link @click="closeMenu" to="/" class="text-lg font-semibold"
           >Free-2-Play</router-link
         >
       </div>
       <div class="ml-auto cursor-pointer">
-        <i @click="toggleMenu" class="fa-solid fa-bars"></i>
+        <i @click="toggleMenu" class="fa-solid fa-bars text-xl"></i>
       </div>
     </div>
     <!-- small screen menu -->
