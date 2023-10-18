@@ -22,12 +22,26 @@ export const useGamesStore = defineStore("games", {
   },
   getters: {
     selectedPlatform: (state) => {
-      if (state.platform === "pc") {
-        return ["Best free games for PC in 2023!", "PC games"];
-      } else if (state.platform === "browser") {
-        return ["Best free games for Browser in 2023!", "browser games"];
+      let category;
+
+      if (state.category === null) {
+        category = "";
       } else {
-        return ["Best free games for PC and Browser in 2023!", "games"];
+        category = ` ${state.category.toUpperCase().split("-").join(" ")}`;
+      }
+
+      if (state.platform === "pc") {
+        return [`Best free${category} games for PC in 2023!`, "PC games"];
+      } else if (state.platform === "browser") {
+        return [
+          `Best free${category} games for Browser in 2023!`,
+          "browser games",
+        ];
+      } else {
+        return [
+          `Best free${category} games for PC and Browser in 2023!`,
+          "games",
+        ];
       }
     },
     numOfResults: (state) => state.results,
