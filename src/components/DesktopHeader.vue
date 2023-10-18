@@ -1,13 +1,13 @@
 <template>
   <!-- Big screen nav -->
-  <nav class="hidden md:flex flex-row">
-    <div class="mr-8">
+  <nav class="hidden lg:flex flex-row">
+    <div class="mr-7">
       <router-link to="/" class="text-xl font-semibold"
         >Free-2-Play</router-link
       >
     </div>
     <div class="md:flex flex-row">
-      <div class="mr-8">
+      <div class="mr-7">
         <button @click="togglePCGames">
           PC Games <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
         </button>
@@ -61,16 +61,14 @@
           </ul>
         </div>
       </div>
-      <router-link to="/about" class="ml-8 font-semibold hover:text-white"
-        >About</router-link
-      >
+      <router-link to="/about" class="ml-7 font-semibold">About</router-link>
     </div>
     <div class="ml-auto flex flex-row">
       <div>
         <search-bar @click="closeDropdowns"></search-bar>
       </div>
       <button @click="handleSearch">
-        <i class="fa-solid fa-magnifying-glass text-xl"></i>
+        <i class="fa-solid fa-magnifying-glass text-xl ml-2"></i>
       </button>
     </div>
   </nav>

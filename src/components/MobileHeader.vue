@@ -1,6 +1,6 @@
 <template>
   <!-- small screen nav -->
-  <nav class="md:hidden">
+  <nav class="lg:hidden">
     <div class="flex flex-row">
       <div>
         <router-link @click="closeMenu" to="/" class="text-lg font-semibold"
