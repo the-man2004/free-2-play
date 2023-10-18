@@ -14,7 +14,7 @@
     <!-- small screen menu -->
     <div
       v-if="isMenuOpen"
-      class="absolute pt-8 pb-4 px-8 left-0 right-0 bg-gray-900 md:hidden"
+      class="absolute pt-8 pb-4 px-8 left-0 right-0 bg-gray-900 lg:hidden"
     >
       <search-bar></search-bar>
       <div class="h-px my-2 bg-gray-800"></div>
@@ -24,51 +24,14 @@
             PC Games
             <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
           </button>
-          <ul
-            v-if="isPCGamesOpen"
-            class="dropdown px-3 py-3 my-3 rounded-md bg-gray-800"
-          >
-            <li><button>MMORPG</button></li>
-            <li><button>Shooter</button></li>
-            <li><button>MOBA</button></li>
-            <li><button>Anime</button></li>
-            <li><button>Battle Royale</button></li>
-            <li><button>Strategy</button></li>
-            <li><button>Sci-Fi</button></li>
-            <li><button>Card Games</button></li>
-            <li><button>Racing</button></li>
-            <li><button>Fighting</button></li>
-            <li><button>Social</button></li>
-            <li><button>Sports</button></li>
-            <div class="h-px my-2 bg-gray-900"></div>
-            <button class="text-blue-500 font-semibold hover:text-blue-600">
-              All PC Games
-            </button>
-          </ul>
+          <PCDropdown v-if="isPCGamesOpen" />
         </li>
         <li>
           <button @click="toggleBrowserGames">
             Browser Games
             <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
           </button>
-          <ul
-            v-if="isBrowserGamesOpen"
-            class="dropdown px-3 py-3 my-3 rounded-md bg-gray-800"
-          >
-            <li><button>Browser MMORPG</button></li>
-            <li><button>Browser Shooter</button></li>
-            <li><button>Browser Anime</button></li>
-            <li><button>Browser Strategy</button></li>
-            <li><button>Browser Fantasy</button></li>
-            <li><button>Browser Sci-Fi</button></li>
-            <li><button>Browser Racing</button></li>
-            <li><button>Browser Social</button></li>
-            <li><button>Browser Sports</button></li>
-            <div class="h-px my-2 bg-gray-900"></div>
-            <button class="text-blue-500 font-semibold hover:text-blue-600">
-              All Browser Games
-            </button>
-          </ul>
+          <BrowserDropdown v-if="isBrowserGamesOpen" />
         </li>
         <div class="h-px my-2 bg-gray-800"></div>
         <li>
@@ -87,7 +50,9 @@
 <script setup>
 import { ref } from "vue";
 
-import SearchBar from "./SearchBar.vue";
+import SearchBar from "../SearchBar.vue";
+import PCDropdown from "./HeaderDropdowns/PCDropdown.vue";
+import BrowserDropdown from "./HeaderDropdowns/BrowserDropdown.vue";
 
 const isMenuOpen = ref(false);
 const isPCGamesOpen = ref(false);
@@ -107,7 +72,7 @@ const closeMenu = () => {
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
-  closeDropdowns();
+  // closeDropdowns();
 };
 
 const togglePCGames = () => {
