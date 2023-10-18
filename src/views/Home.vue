@@ -1,13 +1,26 @@
 <template>
-  <div>
-    <h1>{{ gamesStore.selectedPlatform[0] }}</h1>
-    <p>
-      {{ gamesStore.numOfResults }} free to play
-      <span>{{ gamesStore.selectedPlatform[1] }} found in our games list</span>
-    </p>
-    <button>Filter</button>
+  <div class="min-h-screen bg-slate-900 text-gray-300">
+    <div class="container mx-auto max-w-6xl px-8">
+      <div class="py-12 md:py-24">
+        <h1 class="mb-3 font-semibold text-4xl md:mb-6 md:text-5xl">
+          {{ gamesStore.selectedPlatform[0] }}
+        </h1>
+        <p class="mb-3 md:mb-6 md:text-xl">
+          {{ gamesStore.numOfResults }}
+          <span class="font-semibold">free to play </span>
+          <span
+            >{{ gamesStore.selectedPlatform[1] }} found in our games list!</span
+          >
+        </p>
+        <button
+          class="font-semibold py-1 px-4 rounded-full bg-blue-500 md:text-xl"
+        >
+          Filter
+        </button>
+      </div>
+      <games-list></games-list>
+    </div>
   </div>
-  <games-list></games-list>
 </template>
 
 <script setup>

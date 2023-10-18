@@ -14,7 +14,7 @@
     <!-- small screen menu -->
     <div
       v-if="isMenuOpen"
-      class="absolute pt-8 pb-4 px-8 left-0 right-0 bg-gray-900 lg:hidden"
+      class="absolute pt-8 pb-4 px-8 left-0 right-0 border-b-blue-800 border-t-0 border-x-0 border-b-2 bg-gray-900 lg:hidden"
     >
       <search-bar></search-bar>
       <div class="h-px my-2 bg-gray-800"></div>
