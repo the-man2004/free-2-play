@@ -24,14 +24,14 @@
             PC Games
             <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
           </button>
-          <PCDropdown v-if="isPCGamesOpen" />
+          <PCDropdown v-if="isPCGamesOpen" @change="closeMenu" />
         </li>
         <li>
           <button @click="toggleBrowserGames">
             Browser Games
             <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
           </button>
-          <BrowserDropdown v-if="isBrowserGamesOpen" />
+          <BrowserDropdown v-if="isBrowserGamesOpen" @change="closeMenu" />
         </li>
         <div class="h-px my-2 bg-gray-800"></div>
         <li>

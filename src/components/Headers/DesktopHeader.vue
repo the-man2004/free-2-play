@@ -13,7 +13,7 @@
         </button>
         <!-- PC Games dropdown -->
         <div v-if="isPCGamesOpen">
-          <PCDropdown mode="desktop" />
+          <PCDropdown mode="desktop" @change="closeDropdowns" />
         </div>
       </div>
       <div>
@@ -23,7 +23,7 @@
         </button>
         <!-- Browser Games dropdown -->
         <div v-if="isBrowserGamesOpen">
-          <BrowserDropdown mode="desktop" />
+          <BrowserDropdown mode="desktop" @change="closeDropdowns" />
         </div>
       </div>
       <router-link
