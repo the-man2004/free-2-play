@@ -27,7 +27,7 @@
           </ul>
         </div>
         <div>
-          <h2 class="text-3xl text-center md:text-right my-auto">
+          <h2 class="font-semibold text-3xl text-center md:text-right my-auto">
             Free-2-Play
           </h2>
         </div>
