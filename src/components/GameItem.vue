@@ -1,14 +1,12 @@
 <template>
   <li class="rounded-lg bg-gray-800">
     <router-link :to="`/game/${id}`">
-      <div>
-        <img
-          class="w-full rounded-t-lg"
-          :src="img"
-          alt="Game thumbnail"
-          loading="lazy"
-        />
-      </div>
+      <img
+        class="w-full rounded-t-lg"
+        :src="img"
+        alt="Game thumbnail"
+        loading="lazy"
+      />
       <div class="p-3">
         <div class="pb-3">
           <h2 class="text-lg font-semibold">{{ title }}</h2>
@@ -60,3 +58,10 @@ const platform = computed(() =>
   props.game.platform === "PC (Windows)" ? "pc" : "browser"
 );
 </script>
+
+<style scoped>
+li:hover {
+  transform: scale(1.01);
+  transition: all 0.3s ease;
+}
+</style>
