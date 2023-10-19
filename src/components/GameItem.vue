@@ -1,7 +1,7 @@
 <template>
   <li>
     <router-link :to="`/game/${id}`">
-      <img :src="img" alt="Game thumbnail" loading="lazy" />
+      <img class="w-full" :src="img" alt="Game thumbnail" loading="lazy" />
       <div>
         <h2>{{ title }}</h2>
         <span>FREE</span>
