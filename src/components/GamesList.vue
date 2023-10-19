@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul class="grid grid-cols-1 sm:gap-8 sm:grid-cols-2 lg:grid-cols-3">
+    <ul class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
       <game-item v-for="game in games" :key="game.id" :game="game"></game-item>
     </ul>
   </div>
