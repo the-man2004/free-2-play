@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes">
+  <div class="z-10" :class="classes">
     <ul @click="handleClick">
       <li><button>Browser MMORPG</button></li>
       <li><button>Browser Shooter</button></li>
