@@ -12,11 +12,14 @@
             >{{ gamesStore.selectedPlatform[1] }} found in our games list!</span
           >
         </p>
-        <button
-          class="font-semibold mt-12 py-1 px-4 rounded-full bg-blue-500 md:mt-16 md:text-xl"
-        >
-          Filter
-        </button>
+        <div>
+          <button
+            class="font-semibold mt-12 py-1 px-4 rounded-full bg-blue-500 md:mt-16 md:text-xl"
+          >
+            Filter
+          </button>
+          <filter-model></filter-model>
+        </div>
       </div>
       <games-list></games-list>
     </div>
@@ -27,6 +30,7 @@
 import { onMounted } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
 import GamesList from "../components/GamesList.vue";
+import FilterModel from "@/components/FilterModel.vue";
 
 const gamesStore = useGamesStore();
 
