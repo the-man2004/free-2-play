@@ -42,7 +42,11 @@ const props = defineProps({
 const handleClick = (event) => {
   const value = event.target.innerText;
 
-  gamesStore.setFilters("pc", value.toLowerCase().split(" ").join("-"));
+  gamesStore.setFilters(
+    "pc",
+    "popularity",
+    value.toLowerCase().split(" ").join("-")
+  );
 
   emit("change");
 };

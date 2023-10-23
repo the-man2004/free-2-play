@@ -23,13 +23,17 @@
           </div>
           <div>
             <figure>
-              <figcaption class="mb-2 text-xl">
+              <figcaption class="mb-2 text-md md:text-xl">
                 <button @click="togglePlatform">
                   Platform
                   <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
                 </button>
               </figcaption>
-              <ul v-if="isPlatformOpen" class="mt-4 p-4 rounded-lg bg-gray-800">
+              <ul
+                v-if="isPlatformOpen"
+                @click="handlePlatformClick"
+                class="mt-4 p-4 rounded-lg bg-gray-800"
+              >
                 <li><button>PC</button></li>
                 <li><button>Browser</button></li>
                 <li><button>All</button></li>
@@ -39,13 +43,17 @@
           <div class="h-px my-2 bg-gray-800"></div>
           <div>
             <figure>
-              <figcaption class="mb-2 text-xl">
+              <figcaption class="mb-2 text-md md:text-xl">
                 <button @click="toggleRelevance">
                   Sort By
                   <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
                 </button>
               </figcaption>
-              <ul v-if="isSortByOpen" class="mt-4 p-4 rounded-lg bg-gray-800">
+              <ul
+                v-if="isSortByOpen"
+                @click="handleSortByClick"
+                class="mt-4 p-4 rounded-lg bg-gray-800"
+              >
                 <li><button>Relevance</button></li>
                 <li><button>Popularity</button></li>
                 <li><button>Release Date</button></li>
@@ -56,7 +64,7 @@
           <div class="h-px my-2 bg-gray-800"></div>
           <div class="mb-4">
             <figure>
-              <figcaption class="mb-2 text-xl">
+              <figcaption class="mb-2 text-md md:text-xl">
                 <button @click="toggleGenre">
                   Genre
                   <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
@@ -64,7 +72,8 @@
               </figcaption>
               <ul
                 v-if="isGenreOpen"
-                class="max-h-64 overflow-y-auto mt-4 p-4 rounded-lg bg-gray-800 md:max-h-80"
+                @click="handleGenreClick"
+                class="max-h-32 overflow-y-auto mt-4 p-4 rounded-lg bg-gray-800 md:max-h-80"
               >
                 <li><button>MMO</button></li>
                 <li><button>MMORPG</button></li>
@@ -98,7 +107,31 @@
         </div>
       </nav>
       <div class="font-semibold mt-auto p-8">
-        <button class="py-1 px-8 mr-2 rounded-full bg-blue-500 md:text-xl">
+        <div>
+          <figure>
+            <figcaption class="text-xl mb-4">Selected Filters</figcaption>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              <li>
+                Platform:
+                <span class="text-blue-500">{{ selectedPlatform }}</span>
+              </li>
+              <li>
+                Sort:
+                <span class="text-blue-500">{{ selectedSortBy }}</span>
+              </li>
+              <li>
+                Genre:
+                <span class="text-blue-500">{{
+                  selectedGenre === null ? "none" : selectedGenre
+                }}</span>
+              </li>
+            </ul>
+          </figure>
+        </div>
+        <button
+          @click="applyChanges"
+          class="mt-6 py-1 px-8 mr-2 rounded-full bg-blue-500 md:text-xl"
+        >
           APPLY
         </button>
       </div>
@@ -113,14 +146,24 @@
 </template>
 
 <script setup>
+import { useGamesStore } from "@/stores/useGamesStore";
 import { ref } from "vue";
 
+const gamesStore = useGamesStore();
+
+// Dropdowns and sidebar variables
 const isSidebarOpen = ref(false);
 
 const isPlatformOpen = ref(false);
 const isSortByOpen = ref(false);
 const isGenreOpen = ref(false);
 
+// Filter and Sort variables
+const selectedPlatform = ref("all");
+const selectedSortBy = ref("popularity");
+const selectedGenre = ref(null);
+
+// Dropdowns and sidebar functions
 const closeDropdowns = () => {
   isPlatformOpen.value = false;
   isSortByOpen.value = false;
@@ -150,6 +193,57 @@ const toggleGenre = () => {
   isSortByOpen.value = false;
 
   isGenreOpen.value = !isGenreOpen.value;
+};
+
+// Helper functions
+const checkValue = (event) => {
+  const el = event.target;
+
+  if (el.nodeName === "BUTTON") {
+    return el.innerText.toLowerCase().split(" ").join("-");
+  }
+};
+
+// Click handlers
+const handlePlatformClick = (event) => {
+  closeDropdowns();
+
+  const value = checkValue(event);
+
+  if (value !== undefined) {
+    selectedPlatform.value = value;
+  }
+};
+
+const handleSortByClick = (event) => {
+  closeDropdowns();
+
+  const value = checkValue(event);
+
+  if (value !== undefined) {
+    selectedSortBy.value = value;
+  }
+};
+
+const handleGenreClick = (event) => {
+  closeDropdowns();
+
+  const value = checkValue(event);
+
+  if (value !== undefined) {
+    selectedGenre.value = value;
+  }
+};
+
+// Apply changes
+const applyChanges = () => {
+  console.log(selectedPlatform.value);
+  console.log(selectedSortBy.value);
+  console.log(selectedGenre.value);
+
+  toggleSidebar();
+
+  gamesStore.setFilters(selectedPlatform, selectedSortBy, selectedGenre);
 };
 </script>
 

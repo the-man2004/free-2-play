@@ -48,8 +48,9 @@ export const useGamesStore = defineStore("games", {
     selectedGame: (state) => state.specificGameData,
   },
   actions: {
-    setFilters(platform, category) {
+    setFilters(platform, sort = "popularity", category) {
       this.platform = platform;
+      this.sort = sort;
       this.category = category;
 
       this.fetchListOfGames();

@@ -44,7 +44,7 @@ const handleClick = (event) => {
   emit("change");
 };
 const handleAllGamesClick = () => {
-  gamesStore.setFilters("browser", null);
+  gamesStore.setFilters("browser", "popularity", null);
 
   emit("change");
 };
