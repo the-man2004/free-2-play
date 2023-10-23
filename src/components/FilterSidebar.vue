@@ -41,14 +41,11 @@
             <figure>
               <figcaption class="mb-2 text-xl">
                 <button @click="toggleRelevance">
-                  Relevance
+                  Sort By
                   <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
                 </button>
               </figcaption>
-              <ul
-                v-if="isRelevanceOpen"
-                class="mt-4 p-4 rounded-lg bg-gray-800"
-              >
+              <ul v-if="isSortByOpen" class="mt-4 p-4 rounded-lg bg-gray-800">
                 <li><button>Relevance</button></li>
                 <li><button>Popularity</button></li>
                 <li><button>Release Date</button></li>
@@ -121,12 +118,12 @@ import { ref } from "vue";
 const isSidebarOpen = ref(false);
 
 const isPlatformOpen = ref(false);
-const isRelevanceOpen = ref(false);
+const isSortByOpen = ref(false);
 const isGenreOpen = ref(false);
 
 const closeDropdowns = () => {
   isPlatformOpen.value = false;
-  isRelevanceOpen.value = false;
+  isSortByOpen.value = false;
   isGenreOpen.value = false;
 };
 
@@ -137,7 +134,7 @@ const toggleSidebar = () => {
 };
 
 const togglePlatform = () => {
-  isRelevanceOpen.value = false;
+  isSortByOpen.value = false;
   isGenreOpen.value = false;
 
   isPlatformOpen.value = !isPlatformOpen.value;
@@ -146,11 +143,11 @@ const toggleRelevance = () => {
   isPlatformOpen.value = false;
   isGenreOpen.value = false;
 
-  isRelevanceOpen.value = !isRelevanceOpen.value;
+  isSortByOpen.value = !isSortByOpen.value;
 };
 const toggleGenre = () => {
   isPlatformOpen.value = false;
-  isRelevanceOpen.value = false;
+  isSortByOpen.value = false;
 
   isGenreOpen.value = !isGenreOpen.value;
 };
