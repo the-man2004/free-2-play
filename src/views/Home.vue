@@ -13,12 +13,7 @@
           >
         </p>
         <div>
-          <button
-            class="font-semibold mt-12 py-1 px-4 rounded-full bg-blue-500 md:mt-16 md:text-xl"
-          >
-            Filter
-          </button>
-          <filter-model></filter-model>
+          <filter-sidebar></filter-sidebar>
         </div>
       </div>
       <games-list></games-list>
@@ -30,7 +25,7 @@
 import { onMounted } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
 import GamesList from "../components/GamesList.vue";
-import FilterModel from "@/components/FilterModel.vue";
+import FilterSidebar from "@/components/FilterSidebar.vue";
 
 const gamesStore = useGamesStore();
 
