@@ -36,11 +36,6 @@ body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #888;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: rgb(30 64 175);
 }
 </style>
