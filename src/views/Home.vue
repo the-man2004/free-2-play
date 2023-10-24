@@ -1,6 +1,7 @@
 <template>
   <div class="min-h-screen bg-slate-900 text-gray-300">
-    <div class="container mx-auto max-w-6xl px-8 pb-16">
+    <the-spinner v-if="gamesStore.isLoading === true"></the-spinner>
+    <div v-else class="container mx-auto max-w-6xl px-8 pb-16">
       <div class="pt-12 pb-8 md:pt-24">
         <h1 class="mb-3 font-semibold text-4xl md:mb-6 md:text-5xl">
           {{ gamesStore.selectedPlatform[0] }}
@@ -26,6 +27,7 @@ import { onMounted } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
 import GamesList from "../components/GamesList.vue";
 import FilterSidebar from "@/components/FilterSidebar.vue";
+import TheSpinner from "../components/Spinner/TheSpinner.vue";
 
 const gamesStore = useGamesStore();
 
