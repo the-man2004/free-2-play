@@ -237,13 +237,13 @@ const handleGenreClick = (event) => {
 
 // Apply changes
 const applyChanges = () => {
-  console.log(selectedPlatform.value);
-  console.log(selectedSortBy.value);
-  console.log(selectedGenre.value);
-
   toggleSidebar();
 
-  gamesStore.setFilters(selectedPlatform, selectedSortBy, selectedGenre);
+  gamesStore.setFilters(
+    selectedPlatform.value,
+    selectedSortBy.value,
+    selectedGenre.value
+  );
 };
 </script>
 

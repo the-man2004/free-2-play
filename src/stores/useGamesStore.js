@@ -53,6 +53,9 @@ export const useGamesStore = defineStore("games", {
       this.sort = sort;
       this.category = category;
 
+      console.log(platform);
+      console.log(category);
+
       this.fetchListOfGames();
     },
     // Fetches a list of games
