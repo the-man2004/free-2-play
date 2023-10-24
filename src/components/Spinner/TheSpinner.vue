@@ -1,5 +1,7 @@
 <template>
-  <div class="h-screen flex flex-col items-center justify-center">
+  <div
+    class="h-screen flex flex-col items-center justify-center bg-slate-900 text-gray-300"
+  >
     <div class="">
       <div class="atom-spinner mx-auto mb-6">
         <div class="spinner-inner">
