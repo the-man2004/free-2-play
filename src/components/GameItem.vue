@@ -1,6 +1,6 @@
 <template>
   <li class="rounded-lg bg-gray-800">
-    <router-link :to="`/game/${id}`">
+    <router-link @click="scrollToTop" :to="`/game/${id}`">
       <img
         class="w-full rounded-t-lg"
         :src="img"
@@ -57,6 +57,14 @@ const genre = computed(() => props.game.genre);
 const platform = computed(() =>
   props.game.platform === "PC (Windows)" ? "pc" : "browser"
 );
+
+const scrollToTop = () => {
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
+};
 </script>
 
 <style scoped>
