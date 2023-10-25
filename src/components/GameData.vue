@@ -2,7 +2,25 @@
   <div class="min-h-screen p-8 bg-slate-900 text-gray-300">
     <div>
       <div class="mb-4">
-        <img class="w-full mb-4" :src="thumbnail" alt="Game thumbnail" />
+        <div class="relative">
+          <img
+            class="w-full mb-4"
+            :src="thumbnails[currentImageIndex]"
+            alt="Game thumbnail"
+          />
+          <button
+            @click="handleImageSlide('prev')"
+            class="z-10 text-xl px-2 absolute top-1/2 left-1 -translate-y-1/2 bg-gray-900/10 hover:bg-gray-900/20"
+          >
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <button
+            @click="handleImageSlide('next')"
+            class="z-10 text-xl px-2 absolute top-1/2 right-1 -translate-y-1/2 bg-gray-900/10 hover:bg-gray-900/20"
+          >
+            <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
         <div class="py-1 px-2 bg-slate-800">
           <h2 class="text-xl pb-3">{{ title }}</h2>
           <div class="my-1">
@@ -91,11 +109,20 @@
 
 <script setup>
 import { useGamesStore } from "../stores/useGamesStore";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const gamesStore = useGamesStore();
 
-const thumbnail = computed(() => gamesStore.selectedGame.thumbnail);
+const currentImageIndex = ref(0);
+
+const thumbnails = computed(() => {
+  const thumbailImage = gamesStore.selectedGame.thumbnail;
+  const screenshots = gamesStore.selectedGame.screenshots.map((i) => i.image);
+
+  const images = [thumbailImage, ...screenshots];
+
+  return images;
+});
 const title = computed(() => gamesStore.selectedGame.title);
 const gameUrl = computed(() => gamesStore.selectedGame.game_url);
 const description = computed(() => gamesStore.selectedGame.description);
@@ -105,4 +132,20 @@ const publisher = computed(() => gamesStore.selectedGame.publisher);
 const release_date = computed(() => gamesStore.selectedGame.release_date);
 const genre = computed(() => gamesStore.selectedGame.genre);
 const platform = computed(() => gamesStore.selectedGame.platform);
+
+// Image slider function
+const handleImageSlide = (direction) => {
+  const offset = direction === "next" ? 1 : -1;
+
+  let newIndex = (currentImageIndex.value += offset);
+
+  if (newIndex < 0) {
+    newIndex = thumbnails.value.length - 1;
+  }
+  if (newIndex >= thumbnails.value.length) {
+    newIndex = 0;
+  }
+
+  currentImageIndex.value = newIndex;
+};
 </script>
