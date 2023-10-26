@@ -79,7 +79,7 @@
           <span class="block mb-2"
             ><router-link to="/">Home</router-link> > Game > {{ title }}</span
           >
-          <h2 class="text-3xl md:text-5xl">{{ title }}</h2>
+          <h2 class="text-4xl md:mt-8 md:text-6xl">{{ title }}</h2>
         </div>
         <div class="mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4">
           <h3 class="text-lg pb-2 md:text-xl">About {{ title }}</h3>

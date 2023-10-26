@@ -1,15 +1,33 @@
 <template>
   <div class="z-10" :class="classes">
     <ul @click="handleClick">
-      <li><button>Browser MMORPG</button></li>
-      <li><button>Browser Shooter</button></li>
-      <li><button>Browser Anime</button></li>
-      <li><button>Browser Strategy</button></li>
-      <li><button>Browser Fantasy</button></li>
-      <li><button>Browser Sci-Fi</button></li>
-      <li><button>Browser Racing</button></li>
-      <li><button>Browser Social</button></li>
-      <li><button>Browser Sports</button></li>
+      <li>
+        <router-link to="/"><button>Browser MMORPG</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Shooter</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Anime</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Strategy</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Fantasy</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Sci-Fi</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Racing</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Social</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Browser Sports</button></router-link>
+      </li>
     </ul>
     <div class="h-px my-2 bg-gray-900"></div>
     <button
@@ -39,7 +57,11 @@ const props = defineProps({
 const handleClick = (event) => {
   const value = event.target.innerText;
 
-  gamesStore.setFilters("browser", value.toLowerCase().split(" ")[1]);
+  gamesStore.setFilters(
+    "browser",
+    "popularity",
+    value.toLowerCase().split(" ")[1]
+  );
 
   emit("change");
 };

@@ -1,18 +1,42 @@
 <template>
   <div class="z-10" :class="classes">
     <ul @click="handleClick">
-      <li><button>MMORPG</button></li>
-      <li><button>Shooter</button></li>
-      <li><button>MOBA</button></li>
-      <li><button>Anime</button></li>
-      <li><button>Battle Royale</button></li>
-      <li><button>Strategy</button></li>
-      <li><button>Sci-Fi</button></li>
-      <li><button>Card Games</button></li>
-      <li><button>Racing</button></li>
-      <li><button>Fighting</button></li>
-      <li><button>Social</button></li>
-      <li><button>Sports</button></li>
+      <li>
+        <router-link to="/"><button>MMORPG</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Shooter</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>MOBA</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Anime</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Battle Royale</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Strategy</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Sci-Fi</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Card Games</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Racing</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Fighting</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Social</button></router-link>
+      </li>
+      <li>
+        <router-link to="/"><button>Sports</button></router-link>
+      </li>
     </ul>
     <div class="h-px my-2 bg-gray-900"></div>
     <button
