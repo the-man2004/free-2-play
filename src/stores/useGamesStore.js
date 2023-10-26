@@ -4,6 +4,7 @@ export const useGamesStore = defineStore("games", {
   state: () => {
     return {
       isLoading: true,
+      error: null,
       platform: "all",
       sort: "popularity",
       category: null,
@@ -62,6 +63,8 @@ export const useGamesStore = defineStore("games", {
     async fetchListOfGames() {
       // Set loading to true
       this.isLoading = true;
+      // Set error to null
+      this.error = null;
 
       const url = `https://free-to-play-games-database.p.rapidapi.com/api/games?platform=${
         this.platform
@@ -83,7 +86,9 @@ export const useGamesStore = defineStore("games", {
         this.results = responseData.length;
         console.log(responseData);
       } catch (err) {
-        console.warn(err);
+        console.error(err.message);
+
+        this.error = err.message;
       }
 
       // Set loading to false
@@ -93,6 +98,8 @@ export const useGamesStore = defineStore("games", {
     async fetchGame(id) {
       // Set loading to true
       this.isLoading = true;
+      // Set error to null
+      this.error = null;
 
       try {
         const response = await fetch(
@@ -101,6 +108,7 @@ export const useGamesStore = defineStore("games", {
         );
 
         if (!response.ok) {
+          console.warn(response);
           throw new Error("Something went wrong!");
         }
 
@@ -109,7 +117,9 @@ export const useGamesStore = defineStore("games", {
         this.specificGameData = responseData;
         console.log(responseData);
       } catch (err) {
-        console.log(err);
+        console.error(err.message);
+
+        this.error = err.message;
       }
 
       // Set loading to false
