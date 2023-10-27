@@ -1,45 +1,55 @@
 <template>
-  <!-- Big screen nav -->
-  <nav class="hidden lg:flex flex-row">
-    <div class="mr-7">
-      <router-link @click="closeDropdowns" to="/" class="text-xl font-semibold"
-        >Free-2-Play</router-link
-      >
-    </div>
-    <div class="md:flex flex-row">
-      <div class="mr-7">
-        <button @click="togglePCGames">
-          PC Games <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
-        </button>
-        <!-- PC Games dropdown -->
-        <div v-if="isPCGamesOpen">
-          <PCDropdown mode="desktop" @change="closeDropdowns" />
+  <div
+    class="hidden lg:flex flex-row bg-gray-900 text-gray-300 border-b-blue-800 border-t-0 border-x-0 border-b-2"
+  >
+    <div class="container mx-auto max-w-6xl py-3 px-8 leading-8">
+      <nav class="hidden lg:flex flex-row">
+        <!-- Big screen nav -->
+        <div class="mr-7">
+          <router-link
+            @click="closeDropdowns"
+            to="/"
+            class="text-xl font-semibold"
+            >Free-2-Play</router-link
+          >
         </div>
-      </div>
-      <div>
-        <button @click="toggleBrowserGames">
-          Browser Games
-          <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
-        </button>
-        <!-- Browser Games dropdown -->
-        <div v-if="isBrowserGamesOpen">
-          <BrowserDropdown mode="desktop" @change="closeDropdowns" />
+        <div class="md:flex flex-row">
+          <div class="mr-7">
+            <button @click="togglePCGames">
+              PC Games
+              <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
+            </button>
+            <!-- PC Games dropdown -->
+            <div v-if="isPCGamesOpen">
+              <PCDropdown mode="desktop" @change="closeDropdowns" />
+            </div>
+          </div>
+          <div>
+            <button @click="toggleBrowserGames">
+              Browser Games
+              <i class="fa-solid fa-sort-down relative -top-1 ml-px"></i>
+            </button>
+            <!-- Browser Games dropdown -->
+            <div v-if="isBrowserGamesOpen">
+              <BrowserDropdown mode="desktop" @change="closeDropdowns" />
+            </div>
+          </div>
+          <router-link
+            @click="closeDropdowns"
+            to="/about"
+            class="ml-7 font-semibold"
+            >About</router-link
+          >
         </div>
-      </div>
-      <router-link
-        @click="closeDropdowns"
-        to="/about"
-        class="ml-7 font-semibold"
-        >About</router-link
-      >
+        <div class="ml-auto flex flex-row">
+          <div>
+            <search-bar @click="closeDropdowns"></search-bar>
+          </div>
+          <i class="fa-solid fa-magnifying-glass text-xl ml-2 my-auto"></i>
+        </div>
+      </nav>
     </div>
-    <div class="ml-auto flex flex-row">
-      <div>
-        <search-bar @click="closeDropdowns"></search-bar>
-      </div>
-      <i class="fa-solid fa-magnifying-glass text-xl ml-2 my-auto"></i>
-    </div>
-  </nav>
+  </div>
 </template>
 
 <script setup>
