@@ -2,7 +2,8 @@
   <!-- Filter button -->
   <button
     @click="toggleSidebar"
-    class="font-semibold mt-12 py-1 px-8 rounded-full bg-blue-500 md:mt-16 md:text-xl"
+    id="filter-btn"
+    class="opacity-0 font-semibold mt-12 py-1 px-8 rounded-full bg-blue-500 md:mt-16 md:text-xl"
   >
     <i class="fa-solid fa-sort"></i>
     Sort
@@ -252,6 +253,12 @@ const applyChanges = () => {
 </script>
 
 <style scoped>
+#filter-btn {
+  animation-iteration-count: 1;
+  animation: fadein 0.5s normal forwards ease;
+  animation-delay: 1s;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -265,6 +272,21 @@ const applyChanges = () => {
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: rgb(30 64 175);
+}
+
+/* Filter button animation styling */
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* //////////////////////// */
