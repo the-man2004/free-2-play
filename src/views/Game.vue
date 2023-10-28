@@ -9,7 +9,7 @@
     <game-data></game-data>
   </div>
   <the-error
-    v-if="gamesStore.error !== null"
+    v-else-if="gamesStore.error !== null"
     mode="game"
     :id="props.id"
   ></the-error>
