@@ -20,7 +20,9 @@
           <filter-sidebar></filter-sidebar>
         </div>
       </div>
-      <games-list></games-list>
+      <div id="games-list-container" class="opacity-0">
+        <games-list></games-list>
+      </div>
     </div>
   </div>
 </template>
@@ -43,16 +45,6 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* .slide-enter-active,
-.slide-leave-active {
-  transition: opacity 1s ease;
-}
-
-.slide-enter-from,
-.slide-leave-to {
-  opacity: 0;
-} */
-
 h1 {
   animation-iteration-count: 1;
   animation: slidein 0.5s normal forwards ease;
@@ -62,6 +54,12 @@ p {
   animation-iteration-count: 1;
   animation: fadein 0.5s normal forwards ease;
   animation-delay: 0.5s;
+}
+
+#games-list-container {
+  animation-iteration-count: 1;
+  animation: slidein 0.5s normal forwards ease;
+  animation-delay: 1s;
 }
 
 /* Title animation styling */
