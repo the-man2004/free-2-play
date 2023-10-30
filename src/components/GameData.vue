@@ -3,7 +3,7 @@
     <div
       class="container mx-auto max-w-6xl grid gap-4 grid-cols-1 md:grid-cols-5"
     >
-      <div class="md:sticky md:col-span-2">
+      <div id="slide-right" class="md:sticky md:col-span-2">
         <div class="">
           <div class="relative">
             <img
@@ -75,17 +75,26 @@
         </div>
       </div>
       <div class="md:col-span-3">
-        <div class="mb-4 py-2 px-2 bg-slate-800">
+        <!-- First animation -->
+        <div id="slide-up-1" class="opacity-0 mb-4 py-2 px-2 bg-slate-800">
           <span class="block mb-2"
             ><router-link to="/">Home</router-link> > Game > {{ title }}</span
           >
           <h2 class="text-2xl md:mt-8 sm:text-4xl">{{ title }}</h2>
         </div>
-        <div class="mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4">
+        <!-- Second animation -->
+        <div
+          id="slide-up-2"
+          class="opacity-0 mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4"
+        >
           <h3 class="text-lg pb-2 md:text-xl">About {{ title }}</h3>
           <p class="text-sm whitespace-pre-line">{{ description }}</p>
         </div>
-        <div class="mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4">
+        <!-- Third animation -->
+        <div
+          id="slide-up-3"
+          class="opacity-0 mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4"
+        >
           <figure>
             <figcaption class="text-lg pb-1 md:text-xl">
               Additional Information
@@ -119,7 +128,11 @@
             </ul>
           </figure>
         </div>
-        <div class="mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4">
+        <!-- Fourth animation -->
+        <div
+          id="slide-up-4"
+          class="opacity-0 mb-4 py-1 px-2 bg-slate-800 md:py-2 md:px-4"
+        >
           <figure>
             <figcaption class="text-lg pb-2">
               Minimum System Requirements <span>({{ platform }})</span>
@@ -220,3 +233,57 @@ const handleImageSlide = (direction) => {
   currentImageIndex.value = newIndex;
 };
 </script>
+
+<style scoped>
+/* Slide right styling */
+#slide-right {
+  animation-iteration-count: 1;
+  animation: slide-right 0.8s normal forwards ease;
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide up styling */
+#slide-up-1 {
+  animation-iteration-count: 1;
+  animation: slide-up 0.8s normal forwards ease;
+}
+
+#slide-up-2 {
+  animation-iteration-count: 1;
+  animation: slide-up 0.8s normal forwards ease;
+  animation-delay: 0.2s;
+}
+
+#slide-up-3 {
+  animation-iteration-count: 1;
+  animation: slide-up 0.8s normal forwards ease;
+  animation-delay: 0.4s;
+}
+
+#slide-up-4 {
+  animation-iteration-count: 1;
+  animation: slide-up 0.8s normal forwards ease;
+  animation-delay: 0.8s;
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(100px) translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+}
+</style>
