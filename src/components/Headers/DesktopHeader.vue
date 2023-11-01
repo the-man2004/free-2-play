@@ -42,10 +42,7 @@
           >
         </div>
         <div class="ml-auto flex flex-row">
-          <div>
-            <search-bar @click="closeDropdowns"></search-bar>
-          </div>
-          <i class="fa-solid fa-magnifying-glass text-xl ml-2 my-auto"></i>
+          <search-bar @click="closeDropdowns"></search-bar>
         </div>
       </nav>
     </div>
