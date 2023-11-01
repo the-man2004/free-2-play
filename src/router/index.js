@@ -20,6 +20,10 @@ const routes = [
     component: Game,
     props: true,
   },
+  {
+    path: "/:notFound",
+    redirect: "/",
+  },
 ];
 
 const router = createRouter({
