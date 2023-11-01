@@ -187,13 +187,13 @@
           </figure>
         </div>
         <div>
-          <img
+          <div
             v-for="(thumbnail, i) in thumbnails"
-            :src="thumbnail"
             :key="i"
-            class="w-full pb-4"
-            alt="In Game Screenshots"
-          />
+            class="mb-4 bg-gray-800"
+          >
+            <img :src="thumbnail" class="w-full" alt="In Game Screenshots" />
+          </div>
         </div>
       </div>
     </div>
