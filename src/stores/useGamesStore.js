@@ -47,6 +47,7 @@ export const useGamesStore = defineStore("games", {
     },
     numOfResults: (state) => state.results,
     selectedGame: (state) => state.specificGameData,
+    defaultSearchResults: (state) => state.allGamesData.slice(0, 20),
   },
   actions: {
     setFilters(platform, sort = "popularity", category) {
@@ -82,7 +83,8 @@ export const useGamesStore = defineStore("games", {
 
         const responseData = await response.json();
 
-        this.allGamesData = { ...responseData };
+        // this.allGamesData = { ...responseData };
+        this.allGamesData = responseData;
         this.results = responseData.length;
         console.log(responseData);
       } catch (err) {

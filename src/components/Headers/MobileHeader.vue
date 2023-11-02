@@ -21,7 +21,7 @@
             v-if="isMenuOpen"
             class="z-20 absolute pt-8 pb-4 px-8 left-0 right-0 border-b-blue-800 border-t-0 border-x-0 border-b-2 bg-gray-900 lg:hidden"
           >
-            <search-bar></search-bar>
+            <search-bar @clicked="closeMenu"></search-bar>
             <div class="h-px my-2 bg-gray-800"></div>
             <ul>
               <li>
@@ -61,7 +61,7 @@
 <script setup>
 import { ref } from "vue";
 
-import SearchBar from "../SearchBar.vue";
+import SearchBar from "../Search/SearchBar.vue";
 import PCDropdown from "./HeaderDropdowns/PCDropdown.vue";
 import BrowserDropdown from "./HeaderDropdowns/BrowserDropdown.vue";
 

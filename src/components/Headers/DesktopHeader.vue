@@ -52,7 +52,7 @@
 <script setup>
 import { ref } from "vue";
 
-import SearchBar from "../SearchBar.vue";
+import SearchBar from "../Search/SearchBar.vue";
 import PCDropdown from "./HeaderDropdowns/PCDropdown.vue";
 import BrowserDropdown from "./HeaderDropdowns/BrowserDropdown.vue";
 

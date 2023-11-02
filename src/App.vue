@@ -40,6 +40,6 @@ img {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgb(30 64 175);
+  background: rgb(59 130 246);
 }
 </style>

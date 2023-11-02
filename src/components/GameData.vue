@@ -190,7 +190,7 @@
           <div
             v-for="(thumbnail, i) in thumbnails"
             :key="i"
-            class="mb-4 bg-gray-800"
+            class="mb-4 bg-slate-800"
           >
             <img :src="thumbnail" class="w-full" alt="In Game Screenshots" />
           </div>

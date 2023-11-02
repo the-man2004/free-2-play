@@ -31,9 +31,22 @@
 
       <div class="h-px w-full bg-blue-500"></div>
 
-      <div class="p-4 mt-8">
+      <div class="px-4 mt-6 mb-6">
+        <h3 class="text-lg font-semibold">Recommended</h3>
+      </div>
+
+      <div class="px-4 mb-8 overflow-y-auto">
         <div>
-          <h3 class="text-lg font-semibold">Recommended</h3>
+          <div>
+            <ul>
+              <search-item
+                v-for="(game, i) in gamesStore.defaultSearchResults"
+                :key="i"
+                :game="game"
+                @clicked="closeSearch"
+              ></search-item>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -48,6 +61,12 @@
 
 <script setup>
 import { ref } from "vue";
+import { useGamesStore } from "../../stores/useGamesStore";
+import SearchItem from "./SearchItem.vue";
+
+const emit = defineEmits(["clicked"]);
+
+const gamesStore = useGamesStore();
 
 const isSearchOpen = ref(false);
 const searchValue = ref("");
@@ -59,6 +78,7 @@ const openSearch = () => {
 
 const closeSearch = () => {
   isSearchOpen.value = false;
+  emit("clicked");
 };
 // Search function
 const handleSearch = () => {
@@ -67,3 +87,15 @@ const handleSearch = () => {
   searchValue.value = "";
 };
 </script>
+
+<style scoped>
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(31 41 55);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(59 130 246);
+}
+</style>
