@@ -5,7 +5,7 @@ export const useGamesStore = defineStore("games", {
     return {
       isLoading: true,
       error: null,
-      searchValue: "warzone",
+      searchValue: "",
       platform: "all",
       sort: "popularity",
       category: null,
@@ -48,7 +48,7 @@ export const useGamesStore = defineStore("games", {
     },
     numOfResults: (state) => state.results,
     selectedGame: (state) => state.specificGameData,
-    defaultSearchResults: (state) => {
+    searchResults: (state) => {
       if (state.allGamesData !== undefined && state.searchValue === "") {
         return state.allGamesData.slice(0, 20);
       }

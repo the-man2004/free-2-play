@@ -41,7 +41,7 @@
             <div>
               <ul>
                 <search-item
-                  v-for="(game, i) in gamesStore.defaultSearchResults"
+                  v-for="(game, i) in gamesStore.searchResults"
                   :key="i"
                   :game="game"
                   @clicked="closeSearch"
