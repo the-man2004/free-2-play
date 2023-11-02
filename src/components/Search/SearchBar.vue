@@ -115,7 +115,7 @@ const handleSearch = () => {
 
 .grow-leave-to {
   opacity: 0;
-  transform: scale(0.8);
+  transform: scaleY(0);
 }
 .grow-leave-active {
   transition: all 0.3s ease-out;
