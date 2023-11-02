@@ -17,7 +17,7 @@
 </template>
 
 <script setup>
-import { onMounted } from "vue";
+import { onMounted, watch } from "vue";
 import { useGamesStore } from "../stores/useGamesStore";
 import GameData from "../components/GameData.vue";
 import TheSpinner from "../components/Spinner/TheSpinner.vue";
@@ -26,6 +26,18 @@ import TheError from "../components/ErrorComponents/TheError.vue";
 const gamesStore = useGamesStore();
 
 const props = defineProps(["id"]);
+
+watch(
+  () => props.id,
+  (newId, oldId) => {
+    gamesStore.fetchGame(newId);
+    console.log(
+      "Watch props.selected function called with args:",
+      newId,
+      oldId
+    );
+  }
+);
 
 onMounted(() => {
   gamesStore.fetchGame(props.id);

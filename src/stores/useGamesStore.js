@@ -5,6 +5,7 @@ export const useGamesStore = defineStore("games", {
     return {
       isLoading: true,
       error: null,
+      searchValue: "warzone",
       platform: "all",
       sort: "popularity",
       category: null,
@@ -47,7 +48,11 @@ export const useGamesStore = defineStore("games", {
     },
     numOfResults: (state) => state.results,
     selectedGame: (state) => state.specificGameData,
-    defaultSearchResults: (state) => state.allGamesData.slice(0, 20),
+    defaultSearchResults: (state) => {
+      if (state.allGamesData !== undefined && state.searchValue === "") {
+        return state.allGamesData.slice(0, 20);
+      }
+    },
   },
   actions: {
     setFilters(platform, sort = "popularity", category) {
@@ -85,6 +90,9 @@ export const useGamesStore = defineStore("games", {
 
         // this.allGamesData = { ...responseData };
         this.allGamesData = responseData;
+
+        console.log(this.allGamesData);
+
         this.results = responseData.length;
         console.log(responseData);
       } catch (err) {
