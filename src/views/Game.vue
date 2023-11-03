@@ -29,13 +29,8 @@ const props = defineProps(["id"]);
 
 watch(
   () => props.id,
-  (newId, oldId) => {
+  (newId, _) => {
     gamesStore.fetchGame(newId);
-    console.log(
-      "Watch props.selected function called with args:",
-      newId,
-      oldId
-    );
   }
 );
 

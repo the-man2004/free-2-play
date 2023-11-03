@@ -50,7 +50,27 @@ export const useGamesStore = defineStore("games", {
     selectedGame: (state) => state.specificGameData,
     searchResults: (state) => {
       if (state.allGamesData !== undefined && state.searchValue === "") {
-        return state.allGamesData.slice(0, 20);
+        return [
+          state.allGamesData.slice(0, 20),
+          "Recommended",
+          state.searchValue,
+        ];
+      } else if (state.allGamesData !== undefined) {
+        let searchVal = state.searchValue.toLowerCase();
+
+        console.log(searchVal);
+
+        const result = state.allGamesData.filter((game) => {
+          return game.title.toLowerCase().includes(searchVal);
+        });
+
+        return [
+          result,
+          `Results for "${state.searchValue}"`,
+          `No results, try searching for something else`,
+        ];
+      } else {
+        return [[], "Recommended", "Nothing to recommend"];
       }
     },
   },
@@ -64,6 +84,9 @@ export const useGamesStore = defineStore("games", {
       console.log(category);
 
       this.fetchListOfGames();
+    },
+    setSearchValue(val) {
+      this.searchValue = val;
     },
     // Fetches a list of games
     async fetchListOfGames() {

@@ -33,20 +33,25 @@
         <div class="h-px w-full bg-blue-500"></div>
 
         <div class="px-4 mt-6 mb-6">
-          <h3 class="text-lg font-semibold">Recommended</h3>
+          <h3 class="text-lg font-semibold">
+            {{ results[1] }}
+          </h3>
         </div>
 
         <div class="px-4 mb-8 overflow-y-auto">
           <div>
             <div>
-              <ul>
+              <ul v-if="results[0].length > 0">
                 <search-item
-                  v-for="(game, i) in gamesStore.searchResults"
+                  v-for="(game, i) in results[0]"
                   :key="i"
                   :game="game"
                   @clicked="closeSearch"
                 ></search-item>
               </ul>
+              <h3 v-else class="text-xl font-bold md:text-2xl">
+                {{ results[2] }}
+              </h3>
             </div>
           </div>
         </div>
@@ -64,7 +69,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useGamesStore } from "../../stores/useGamesStore";
 import SearchItem from "./SearchItem.vue";
 
@@ -74,6 +79,8 @@ const gamesStore = useGamesStore();
 
 const isSearchOpen = ref(false);
 const searchValue = ref("");
+
+const results = computed(() => gamesStore.searchResults);
 
 // Handle opening and closing search
 const openSearch = () => {
@@ -87,6 +94,7 @@ const closeSearch = () => {
 // Search function
 const handleSearch = () => {
   console.log(searchValue.value);
+  gamesStore.setSearchValue(searchValue.value);
 
   searchValue.value = "";
 };
