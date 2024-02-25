@@ -21,7 +21,7 @@ const routes = [
     props: true,
   },
   {
-    path: "/:notFound",
+    path: "/:pathMatch(.*)*",
     redirect: "/",
   },
 ];
